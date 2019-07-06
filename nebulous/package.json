@@ -1,6 +1,7 @@
 {
-  "name": "nebulous-mesh",
+  "name": "@zehcnas34/nebulous",
   "version": "1.0.0",
+  "private": false,
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "license": "MIT",
