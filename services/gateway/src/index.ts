@@ -1,17 +1,17 @@
-// import { Service } from "./service";
 import { Service } from "nebulous";
 
 function main() {
-  let problemsService = new Service("gateway");
-  problemsService.register("/", (req, res) => {
-    res.json([{ name: "something", difficulty: "something" }]);
-  });
-  problemsService.register("/:id", (req, res) => {
-    res.json({
-      name: "awesome",
-      content: "this is the content"
-    });
-  });
+  new Service("gateway", 4545)
+    .register("info", async (call, payload) => {
+      const problems = await call("problems", "getProblems", {});
+      const users = await call("users", "all", {});
+      const users2 = await call("users", "all", {});
+      console.log({ problems, users, payload, users2 });
+      return {
+        debug: true
+      };
+    })
+    .start();
 }
 
 main();

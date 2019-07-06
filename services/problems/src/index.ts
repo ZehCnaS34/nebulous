@@ -1,16 +1,11 @@
-import { Service } from "./service";
+import { Service } from "nebulous"
 
 function main() {
-  let problemsService = new Service("problems");
-  problemsService.register("/", (req, res) => {
-    res.json([{ name: "something", difficulty: "something" }]);
+  let problemsService = new Service("problems", 3434);
+  problemsService.register("getProblems", (caller, payload) => {
+    return { name: "something", difficulty: "something" };
   });
-  problemsService.register("/:id", (req, res) => {
-    res.json({
-      name: "awesome",
-      content: "this is the content"
-    });
-  });
+  problemsService.start();
 }
 
 main();
